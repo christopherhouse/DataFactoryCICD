@@ -79,6 +79,9 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-06-01-preview' = {
 resource dataFactory 'Microsoft.DataFactory/factories@2018-06-01' = {
   name: dataFactoryName
   location: location
+  identity: {
+    type: 'SystemAssigned'
+  }
 }
 
 resource sourceSecret 'Microsoft.KeyVault/vaults/secrets@2021-06-01-preview' = {
