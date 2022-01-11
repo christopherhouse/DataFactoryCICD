@@ -39,3 +39,10 @@ stages:
         targetPath: $(System.DefaultWorkingDirectory)/data-factory
         artifact: data-factory
         publishLocation: pipeline
+
+- template: templates/deploy.yaml
+  parameters:
+    stageName: DeployDevelopment
+    serviceConnection: MSDN
+    resourceGroupName: ADF-CI-CD-D
+    region: eastus
