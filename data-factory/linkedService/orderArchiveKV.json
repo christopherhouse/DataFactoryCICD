@@ -1,0 +1,10 @@
+{
+	"name": "orderArchiveKV",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://cmhadfcicikv-d.vault.azure.net/"
+		}
+	}
+}
