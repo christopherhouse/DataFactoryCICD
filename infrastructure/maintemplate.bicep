@@ -12,7 +12,6 @@ resource sourceStorage 'Microsoft.Storage/storageAccounts@2021-06-01' = {
   location: location
   sku: {
     name: 'Standard_LRS'
-    tier: 'Standard'
   }
   kind: 'StorageV2'
   properties: {
@@ -27,5 +26,27 @@ resource sourceBlobService 'Microsoft.Storage/storageAccounts/blobServices@2021-
 
 resource orderContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-06-01' = {
   name: orderContainerName
+  parent: sourceBlobService
+}
+
+resource destStorage 'Microsoft.Storage/storageAccounts@2021-06-01' = {
+  name: destStorageAccountName
+  location: location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    accessTier: 'Hot'
+  }
+}
+
+resource destBlobService 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' = {
+  name: 'default'
+  parent: sourceStorage
+}
+
+resource archiveContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-06-01' = {
+  name: archiveContainerName
   parent: sourceBlobService
 }
