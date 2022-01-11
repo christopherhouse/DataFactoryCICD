@@ -1,0 +1,63 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "cmhadfcicd-d"
+		},
+		"orderArchiveBlobs_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "DEST-STORAGE-CONNECTION-STRING"
+		},
+		"orderArchiveKV_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://cmhadfcicikv-d.vault.azure.net/"
+		},
+		"orderBlobStorage_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "SRC-STORAGE-CONNECTION-STRING"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "cmhadfcicd-d_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"orderArchiveKV_properties_typeProperties_baseUrl": {
+						"value": "[parameters('orderArchiveKV_properties_typeProperties_baseUrl')]"
+					},
+					"orderArchiveBlobs_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('orderArchiveBlobs_properties_typeProperties_connectionString_secretName')]"
+					},
+					"orderBlobStorage_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('orderBlobStorage_properties_typeProperties_connectionString_secretName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "cmhadfcicd-d"
+		},
+		"orderArchiveBlobs_properties_typeProperties_connectionString_secretName": {
+			"value": "DEST-STORAGE-CONNECTION-STRING"
+		},
+		"orderArchiveKV_properties_typeProperties_baseUrl": {
+			"value": "https://cmhadfcicikv-d.vault.azure.net/"
+		},
+		"orderBlobStorage_properties_typeProperties_connectionString_secretName": {
+			"value": "SRC-STORAGE-CONNECTION-STRING"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
