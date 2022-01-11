@@ -1,0 +1,17 @@
+{
+	"name": "orderBlob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "orderBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation"
+			}
+		},
+		"schema": {}
+	}
+}
