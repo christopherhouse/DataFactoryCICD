@@ -19,7 +19,7 @@ stages:
     environment: ${{ parameters.environment }}
     variables:
     - name: parameterFile
-      value: '@$(Pipeline.Workspace)/infrastructure/parameteters/parameters.${{ parameters.environment }}.json'
+      value: '@$(Pipeline.Workspace)/infrastructure/parameters/parameters.${{ parameters.environment }}.json'
     pool:
       vmImage: ubuntu-latest
     strategy:
