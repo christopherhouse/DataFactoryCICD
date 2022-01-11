@@ -1,0 +1,17 @@
+{
+	"name": "orderBlobStorage",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "orderArchiveKV",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SRC-STORAGE-CONNECTION-STRING"
+			}
+		}
+	}
+}
