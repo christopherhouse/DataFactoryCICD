@@ -43,6 +43,7 @@ stages:
 - template: templates/deploy.yaml
   parameters:
     stageName: DeployDevelopment
+    environment: development
     serviceConnection: MSDN
     resourceGroupName: ADF-CI-CD-D
     region: eastus

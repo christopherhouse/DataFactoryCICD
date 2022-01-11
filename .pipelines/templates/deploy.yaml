@@ -1,8 +1,6 @@
 parameters:
 - name: stageName
   default: ''
-- name: dataFactoryName
-  default: ''
 - name: environment
   default: ''
 - name: serviceConnection
@@ -21,7 +19,7 @@ stages:
     environment: ${{ parameters.environment }}
     variables:
     - name: parameterFile
-      value: '@$(Pipeline.Workspace)/infrastructure/parameteters/parameters.${{ parameters.environmentName }}.json'
+      value: '@$(Pipeline.Workspace)/infrastructure/parameteters/parameters.${{ parameters.environment }}.json'
     pool:
       vmImage: ubuntu-latest
     strategy:
