@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "sourceStorageAccountName": {
+        "value": "cmhadfcicdordersp"
+      },
+      "destStorageAccountName": {
+        "value": "cmhadfcicdarchivep"
+      },
+      "orderContainerName": {
+        "value": "landing"
+      },
+      "archiveContainerName": {
+        "value": "archive"
+      },
+      "keyVaultName": {
+        "value": "cmhadfcicd-kv-p"
+      },
+      "dataFactoryName": {
+        "value": "cmhadfcicd-adf-p"
+      }      
+    }
+  }
