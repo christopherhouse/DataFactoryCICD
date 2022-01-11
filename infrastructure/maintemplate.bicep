@@ -50,3 +50,16 @@ resource archiveContainer 'Microsoft.Storage/storageAccounts/blobServices/contai
   name: archiveContainerName
   parent: destBlobService
 }
+
+resource keyVault 'Microsoft.KeyVault/vaults@2021-06-01-preview' = {
+  name: keyVaultName
+  location: location
+  properties: {
+    sku: {
+      family: 'A'
+      name: 'standard'
+    }
+    tenantId: subscription().tenantId
+  }
+}
+
