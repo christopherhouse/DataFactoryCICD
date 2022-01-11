@@ -11,30 +11,31 @@ pr:
 stages:
 - stage: Build
   jobs:
-  displayName: Build infrastructure and publish artifacts
-  pool:
-    vmImage: ubuntu-latest
-  steps:
-  - task: AzureCLI@2
-    displayName: Build Bicep template
-    inputs:
-      azureSubscription: MSDN
-      scriptType: bash
-      scriptLocation: inlineScript
-      inlineScript: |
-        az bicep install
-        az bicep build --file $(System.DefaultWorkingDirectory)/infrastructure/maintemplate.bicep
+  - job:  Build
+    displayName: Build infrastructure and publish artifacts
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: AzureCLI@2
+      displayName: Build Bicep template
+      inputs:
+        azureSubscription: MSDN
+        scriptType: bash
+        scriptLocation: inlineScript
+        inlineScript: |
+          az bicep install
+          az bicep build --file $(System.DefaultWorkingDirectory)/infrastructure/maintemplate.bicep
 
-  - task: PublishPipelineArtifact@1
-    displayName: Publish infrastructure artifact
-    inputs:
-      targetPath: $(System.DefaultWorkingDirectory)/infrastructure
-      artifact: infrastructure
-      publishLocation: pipeline
-  
-  - task: PublishPipelineArtifact@1
-    displayName: Publish ADF artifact
-    inputs:
-      targetPath: $(System.DefaultWorkingDirectory)/data-factory
-      artifact: data-factory
-      publishLocation: pipeline
+    - task: PublishPipelineArtifact@1
+      displayName: Publish infrastructure artifact
+      inputs:
+        targetPath: $(System.DefaultWorkingDirectory)/infrastructure
+        artifact: infrastructure
+        publishLocation: pipeline
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish ADF artifact
+      inputs:
+        targetPath: $(System.DefaultWorkingDirectory)/data-factory
+        artifact: data-factory
+        publishLocation: pipeline
