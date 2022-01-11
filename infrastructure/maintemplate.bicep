@@ -43,10 +43,10 @@ resource destStorage 'Microsoft.Storage/storageAccounts@2021-06-01' = {
 
 resource destBlobService 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' = {
   name: 'default'
-  parent: sourceStorage
+  parent: destStorage
 }
 
 resource archiveContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-06-01' = {
   name: archiveContainerName
-  parent: sourceBlobService
+  parent: destBlobService
 }
