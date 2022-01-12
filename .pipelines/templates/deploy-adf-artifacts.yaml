@@ -30,7 +30,12 @@ stages:
         deploy:
           steps:
           - download: current
+            displayName: Download adf_publish artifact
             artifact: adf_publish
+
+          - downlaod: current
+            displayName: Download scripts artifact
+            artifact: scripts
         
           - task: AzurePowerShell@5
             displayName: Stop ADF triggers
