@@ -5,16 +5,10 @@ parameters:
   default: ''
 - name: serviceConnection
   default: ''
-- name: armTemplate
-  default: ''
 - name: resourceGroupName
   default: ''
 - name: dataFactoryName
   default: ''
-- name: preDeployment
-  default: true
-- name: deleteDeployment
-  default: false
 - name: archiveStorageConnectionStringSecretName
   default: ''
 - name: orderStorageConnectionStringSecretName
@@ -31,7 +25,7 @@ stages:
     environment: ${{ parameters.environment }}
     pool:
       vmImage: ubuntu-latest
-    stategy:
+    strategy:
       runOnce:
         deploy:
           steps:
