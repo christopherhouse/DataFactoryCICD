@@ -45,3 +45,11 @@ stages:
               ScriptPath: $(Pipeline.Workspace)/scripts/adfPreAndPostDeployOps.ps1
               ScriptArguments: -armTemplate $(Pipeline.Workspace)/adf_publish/ARMTemplateForFactory.json -ResourceGroupName ${{ parameters.resourceGroupName }} -DataFactoryName ${{ parameters.dataFactoryName }} -predeployment $true -deleteDeployment $false
               azurePowerShellVersion: Latest
+
+          - task: AzureResourceManagerTemplateDeployment@2
+            displayName: Deploy ADF artifact templates
+            inputs:
+              azureResourceManagerConnection: ${{ parameters.serviceConnect }}
+              resourceGroupName: ${{ parameters.resourceGroupName }}
+              csmFile: $(Pipeline.Workspace)/adf_publish/ARMTemplateForFactory.json
+              overrideParameters: -factoryName ${{ parameters.dataFactoryName }} -orderArchiveKV_properties_typeProperties_baseUrl ${{ parameters.keyVaultBaseUrl }}
