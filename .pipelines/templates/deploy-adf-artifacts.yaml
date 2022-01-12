@@ -33,7 +33,7 @@ stages:
             displayName: Download adf_publish artifact
             artifact: adf_publish
 
-          - downlaod: current
+          - download: current
             displayName: Download scripts artifact
             artifact: scripts
         
