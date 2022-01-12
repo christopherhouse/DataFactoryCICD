@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-    - main # Only run on changes to main
+    - adf_publish # Only run on changes to adf_publish
 
 pr:
   branches:
