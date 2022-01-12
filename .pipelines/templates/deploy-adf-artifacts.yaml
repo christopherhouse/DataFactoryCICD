@@ -43,5 +43,5 @@ stages:
               azureSubscription: ${{ parameters.serviceConnection }}
               ScriptType: FilePath
               ScriptPath: $(Pipeline.Workspace)/scripts/adfPreAndPostDeployOps.ps1
-              ScriptArgumnets: -armTemplate $(Pipeline.Workspace)/adf_publish/ARMTemplateForFactory.json -ResourceGroupName ${{ parameters.resourceGroupName }} -DataFactoryName ${{ parameters.dataFactoryName }} -predeployment $true -deleteDeployment $false
+              ScriptArguments: -armTemplate $(Pipeline.Workspace)/adf_publish/ARMTemplateForFactory.json -ResourceGroupName ${{ parameters.resourceGroupName }} -DataFactoryName ${{ parameters.dataFactoryName }} -predeployment $true -deleteDeployment $false
               azurePowerShellVersion: Latest
