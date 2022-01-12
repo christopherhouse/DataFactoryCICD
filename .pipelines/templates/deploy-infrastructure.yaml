@@ -27,10 +27,8 @@ stages:
         deploy:
           steps:
           - download: current
+            displayName: Download infrastructure artifact
             artifact: infrastructure
-        
-          - download: current
-            artifact: data-factory
         
           - task: AzureCLI@2
             displayName: Deploy infrastructure

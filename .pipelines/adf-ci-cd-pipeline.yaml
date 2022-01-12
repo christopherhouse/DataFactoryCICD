@@ -33,13 +33,6 @@ stages:
         artifact: infrastructure
         publishLocation: pipeline
 
-    - task: PublishPipelineArtifact@1
-      displayName: Publish ADF artifact
-      inputs:
-        targetPath: $(System.DefaultWorkingDirectory)/data-factory
-        artifact: data-factory
-        publishLocation: pipeline
-
 - template: templates/deploy-infrastructure.yaml
   parameters:
     stageName: DeployDevelopment
