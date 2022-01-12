@@ -40,7 +40,7 @@ stages:
         artifact: data-factory
         publishLocation: pipeline
 
-- template: templates/deploy.yaml
+- template: templates/deploy-infrastructure.yaml
   parameters:
     stageName: DeployDevelopment
     environment: development
