@@ -49,7 +49,7 @@ stages:
           - task: AzureResourceManagerTemplateDeployment@2
             displayName: Deploy ADF artifact templates
             inputs:
-              azureResourceManagerConnection: ${{ parameters.serviceConnect }}
+              azureResourceManagerConnection: ${{ parameters.serviceConnection }}
               resourceGroupName: ${{ parameters.resourceGroupName }}
               csmFile: $(Pipeline.Workspace)/adf_publish/ARMTemplateForFactory.json
               overrideParameters: -factoryName ${{ parameters.dataFactoryName }} -orderArchiveKV_properties_typeProperties_baseUrl ${{ parameters.keyVaultBaseUrl }}
