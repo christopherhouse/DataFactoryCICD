@@ -53,3 +53,12 @@ stages:
               resourceGroupName: ${{ parameters.resourceGroupName }}
               csmFile: $(Pipeline.Workspace)/adf_publish/ARMTemplateForFactory.json
               overrideParameters: -factoryName ${{ parameters.dataFactoryName }} -orderArchiveKV_properties_typeProperties_baseUrl ${{ parameters.keyVaultBaseUrl }}
+
+          - task: AzurePowerShell@5
+            displayName: Start ADF triggers
+            inputs:
+              azureSubscription: ${{ parameters.serviceConnection }}
+              ScriptType: FilePath
+              ScriptPath: $(Pipeline.Workspace)/scripts/adfPreAndPostDeployOps.ps1
+              ScriptArguments: -armTemplate $(Pipeline.Workspace)/adf_publish/ARMTemplateForFactory.json -ResourceGroupName ${{ parameters.resourceGroupName }} -DataFactoryName ${{ parameters.dataFactoryName }} -predeployment $false -deleteDeployment $false
+              azurePowerShellVersion: Latest              
