@@ -44,8 +44,8 @@ stages:
 
 - template: templates/deploy-adf-artifacts.yaml
   parameters:
-    stageName: DeployDevelopmentADFArtifacts
-    environment: development
+    stageName: DeploProductionADFArtifacts
+    environment: production
     serviceConnection: AIRS
     resourceGroupName: ADF-CI-CD-P
     dataFactoryName: cmhadfcicd-adf-p
