@@ -41,3 +41,14 @@ stages:
     archiveStorageConnectionStringSecretName: DEST-STORAGE-CONNECTION-STRING
     orderStorageConnectionStringSecretName: SRC-STORAGE-CONNECTION-STRING
     keyVaultBaseUrl: https://cmhadfcicd-kv-d.vault.azure.net/
+
+- template: templates/deploy-adf-artifacts.yaml
+  parameters:
+    stageName: DeployDevelopmentADFArtifacts
+    environment: development
+    serviceConnection: AIRS
+    resourceGroupName: ADF-CI-CD-P
+    dataFactoryName: cmhadfcicd-adf-p
+    archiveStorageConnectionStringSecretName: DEST-STORAGE-CONNECTION-STRING
+    orderStorageConnectionStringSecretName: SRC-STORAGE-CONNECTION-STRING
+    keyVaultBaseUrl: https://cmhadfcicd-kv-p.vault.azure.net/
