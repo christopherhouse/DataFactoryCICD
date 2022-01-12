@@ -47,3 +47,11 @@ stages:
     serviceConnection: MSDN
     resourceGroupName: ADF-CI-CD-D
     region: eastus
+
+- template: templates/deploy-infrastructure.yaml
+  parameters:
+    stageName: DeployProduction
+    environment: production
+    serviceConnection: AIRS
+    resourceGroupName: ADF-CI-CD-P
+    region: eastus2
