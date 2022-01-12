@@ -1,0 +1,25 @@
+trigger:
+  branches:
+    include:
+    - adf_publish # Only run when ADF artifacts are published
+
+pr:
+  branches:
+    exclude:
+    - '*' # Don't run for PRs
+
+stages:
+- stage: Publish
+  displayName: Publish ADF artifacts
+  jobs:
+  - job: Publish
+    displayName: Publish ADF artifacts
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: PublishPipelineArtifact@1
+      displayName: Publish ADF artifacts
+      inputs:
+        targetPath: $(System.DefaultWorkingDirectory)/cmhadfcicd-d/
+        artifacts: adf-artifacts
+        publishLocation: pipeline
