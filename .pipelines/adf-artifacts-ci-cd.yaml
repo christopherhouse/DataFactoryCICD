@@ -23,3 +23,21 @@ stages:
         targetPath: $(System.DefaultWorkingDirectory)/cmhadfcicd-d/
         artifact: adf_publish
         publishLocation: pipeline
+    
+    - task: PublishPipelineArtifact@1
+      displayName: Publish pre and post deploy script
+      inputs:
+        targetPath: $(System.DefaultWorkingDirectory)/.pipelines/scripts
+        artifact: scripts
+        publishLocation: pipeline
+
+- template: templates/deploy-adf-artifacts.yaml
+  parameters:
+    stageName: DeployDevelopmentADFArtifacts
+    environment: development
+    serviceConnection: MSDN
+    resourceGroupName: ADF-CI-CD-D
+    dataFactoryName: cmhadfcicd-adf-d
+    archiveStorageConnectionStringSecretName: DEST-STORAGE-CONNECTION-STRING
+    orderStorageConnectionStringSecretName: SRC-STORAGE-CONNECTION-STRING
+    keyVaultBaseUrl: https://cmhadfcicd-kv-d.vault.azure.net/

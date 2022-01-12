@@ -1,0 +1,48 @@
+parameters:
+- name: stageName
+  default: ''
+- name: environment
+  default: ''
+- name: serviceConnection
+  default: ''
+- name: armTemplate
+  default: ''
+- name: resourceGroupName
+  default: ''
+- name: dataFactoryName
+  default: ''
+- name: preDeployment
+  default: true
+- name: deleteDeployment
+  default: false
+- name: archiveStorageConnectionStringSecretName
+  default: ''
+- name: orderStorageConnectionStringSecretName
+  default: ''
+- name: keyVaultBaseUrl
+  default: ''
+
+stages:
+- stage: ${{ parameters.stageName }}
+  displayName: ${{ parameters.stageName }}
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    environment: ${{ parameters.environment }}
+    pool:
+      vmImage: ubuntu-latest
+    stategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: adf_publish
+        
+          - task: AzurePowerShell@5
+            displayName: Stop ADF triggers
+            inputs:
+              azureSubscription: ${{ parameters.serviceConnection }}
+              ScriptType: FilePath
+              ScriptPath: $(Pipeline.Workspace)/scripts/adfPreAndPostDeployOps.ps1
+              ScriptArgumnets: -armTemplate $(Pipeline.Workspace)/adf_publish/ARMTemplateForFactory.json -ResourceGroupName ${{ parameters.resourceGroupName }} -DataFactoryName ${{ parameters.dataFactoryName }} -predeployment $true -deleteDeployment $false
+              azurePowerShellVersion: Latest
